@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { MasterDetailCommands, Hero } from '../../core';
 import { HeroService } from '../hero.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-heroes',
@@ -23,7 +24,14 @@ export class HeroesComponent implements MasterDetailCommands<Hero>, OnInit {
   }
 
   ngOnInit() {
-    this.getHeroes();
+    // this.getHeroes();
+    this.heroes$
+      .pipe(
+        map(h => {
+          return h;
+        })
+      )
+      .subscribe();
   }
 
   close() {
